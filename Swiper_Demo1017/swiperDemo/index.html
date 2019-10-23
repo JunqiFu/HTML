@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Swiper</title>
+  <!-- Link Swiper's CSS -->
+  	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.css">  
+  	<link rel="stylesheet" href="https://unpkg.com/swiper/css/swiper.min.css">   
+  <!-- Link Swiper's JS -->
+  	<script src="https://unpkg.com/swiper/js/swiper.js"> </script>  
+  	<script src="https://unpkg.com/swiper/js/swiper.min.js"> </script>
+	
+  <!-- 外部字体样式 -->
+	<link rel="stylesheet" type="text/css" href="css/fonts.css" />
+
+  <!-- Demo styles -->
+  <style>
+    html, body {
+      position: relative;
+      height: 100%;
+    }
+    body {
+      background: #eee;
+      font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+      font-size: 14px;
+      color:#000;
+      margin: 0;
+      padding: 0;
+    }
+    .swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 3em;
+      /* background: #fff; */
+	  color:#e0f0e9;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
+	.spimg{background-image: url(img/bg/724.png);}
+	.spimg1{background-image: url(img/bg/853.png);}
+	.spimg2{background-image: url(img/bg/231.png);}
+	.spimg3{background-image: url(img/bg/280.png);}
+	.spimg4{background-image: url(img/bg/343.png);}
+	.spimg5{background-image: url(img/bg/453.png);}
+	.spimg6{background-image: url(img/bg/550.png);}
+	/* typity */
+	.typity {
+			 /* 取消下划线 */
+	        /*border-bottom: 3px solid #425066; */
+	       padding-right: 2px;
+	       position: relative;
+	       transition: background-position .4s;
+	       white-space: nowrap;
+	     }
+	     .typity::after {
+	       animation: blink-cursor .75s step-end infinite;
+	       background-color: transparent;
+	       content: "";
+	       display: block;
+	       height: 100%;
+	       position: absolute;
+	       right: 0;
+	       top: 0;
+	       width: 2px;
+	     }
+	     .typity.highlight {
+	       background-image: linear-gradient(to left, rgba(0, 0, 0, 0.2) 50%, transparent 50%);
+	       background-position: 100%;
+	       background-size: 200% 100%;
+	     }
+	     .typity.highlight::after {
+	       animation: none;
+	     }
+	
+	     @keyframes blink-cursor {
+	       0% {
+	         background-color: transparent;
+	       }
+	       50% {
+			   /* 取消光标显示 */
+	/*         background-color: #d6ecf0; */
+	       }
+	     }
+	     @media only screen and (max-width: 600px) {
+	       body {
+	         font-size: 22px;
+	       }
+	
+	       .typity {
+	/*         border-bottom: 1px solid #425066; */
+	         padding-right: 1px;
+	       }
+	       .typity::after {
+	         width: 1px;
+	       }
+	     }
+  </style>
+</head>
+<body>
+  <!-- Swiper -->
+  <div class="swiper-container">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide spimg">    
+	  
+	     <span class="typity font-kai"></span>
+		 
+	  </div>
+      <div class="swiper-slide spimg1"></div>
+      <div class="swiper-slide spimg2"></div>
+      <div class="swiper-slide spimg3"></div>
+      <div class="swiper-slide spimg6"></div>
+    <!-- Add Pagination -->
+    <div class="swiper-pagination"></div>
+
+  </div>
+
+<!--  Swiper JS
+  <script src="../package/js/swiper.min.js"></script> -->
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+	  loop: true,
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'progressbar',
+      },
+      // navigation: {
+      //   nextEl: '.swiper-button-next',
+      //   prevEl: '.swiper-button-prev',
+      // },
+    });
+  </script>
+  
+  <!-- JS -->
+  <script>
+  	   // let 声明的变量只在 let 命令所在的代码块内有效
+     let typed = "";
+  		// const 声明一个只读的常量，一旦声明，常量的值就不能改变
+    const element = document.querySelector(".typity");
+  	    //  获取文档中CSS 样式 .typity 的元素
+  
+    function startType(pun, index) {
+  		 // 设置一个循环函数 
+      if (index < pun.length) {
+        typed += pun.charAt(index);
+        element.innerHTML = typed;
+        index++;
+        setTimeout(function() {
+          startType(pun, index);
+        }, 60);
+  		 // 字体加载的速度 
+      } else {
+        setTimeout(function() {
+          element.classList.add("highlight");
+        }, 300);
+  
+        setTimeout(function() {
+          element.classList.remove("highlight");
+          typed = "";
+          element.innerHTML = typed;
+          startType(getRandomPun(), 0);
+        }, 4500);
+      }
+    }
+  
+    function getRandomPun() {
+      const puns = [
+        "明明如月，何时可掇？忧从中来，不可断绝。",
+        "越陌度阡，枉用相存。契阔谈宴，心念旧恩。",
+        "月明星稀，乌鹊南飞。绕树三匝，何枝可依？",
+        "山不厌高，海不厌深。周公吐哺，天下归心。"
+      ];
+      const index = Math.floor(Math.random() * puns.length);
+  
+      return puns[index];
+    }
+  
+    startType(getRandomPun(), 0);
+  
+  
+  </script>
+</body>
+</html>
